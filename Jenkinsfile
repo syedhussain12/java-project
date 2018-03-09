@@ -52,7 +52,7 @@ pipeline {
         }
     }
     stage('Promote to Green') {
-     agent {
+    agent {
        label 'apache'
      }
       steps {
