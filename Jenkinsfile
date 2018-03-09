@@ -1,7 +1,5 @@
 pipeline {
-   agent {
-     label none
-   }
+   agent none
 
    stages {
      stage('Unit Tests') {
@@ -21,6 +19,11 @@ pipeline {
       steps {
          sh 'ant -f build.xml -v'
      }
+     post {
+       always {
+        archiveArtifacts artifacts: 'dist/*.jar', fingerprint: true
+       }
+     }
     }
     stage('deploy') {
         agent {
@@ -38,12 +41,6 @@ pipeline {
       sh "wget http://jenkinsmaster.example.com/rectangle/all/rectangle_${env.BUILD_NUMBER}.jar"
       sh "java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"
      }
-    }
-  }
-
-  post {
-    always {
-    archiveArtifacts artifacts: 'dist/*.jar', fingerprint: true
     }
   }
 }
