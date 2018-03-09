@@ -30,8 +30,8 @@ pipeline {
          label 'apache'
         }
     steps {
-      sh "mkdir /var/www/html/rectangles/all/$_{env.BRANCH_NAME}"
-      sh "cp dist/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/$_{env.BRANCH_NAME}/"
+      sh "mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}"
+      sh "cp dist/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/${env.BRANCH_NAME}/"
     }
   }
     stage ("Rectangle on Centos") {
@@ -39,7 +39,7 @@ pipeline {
       label 'Centos'
      }
      steps {
-      sh "wget http://192.168.56.106/rectangles/all/$_{env.BRANCH_NAME}/rectangle_${env.BUILD_NUMBER}.jar"
+      sh "wget http://192.168.56.106/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.BUILD_NUMBER}.jar"
       sh "java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"
      }
     }
@@ -48,7 +48,7 @@ pipeline {
         docker 'openjdk:8u151-jre'
         }
         steps {
-        sh "wget http://192.168.56.106/rectangles/all/$_{env.BRANCH_NAME}/rectangle_${env.BUILD_NUMBER}.jar"
+        sh "wget http://192.168.56.106/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.BUILD_NUMBER}.jar"
         sh "java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"
         }
     }
@@ -85,3 +85,4 @@ pipeline {
     }
   }
 }
+
