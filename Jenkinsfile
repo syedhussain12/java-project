@@ -38,7 +38,7 @@ pipeline {
       label 'Centos'
      }
      steps {
-      sh "wget http://jenkinsmaster.example.com/rectangle/all/rectangle_${env.BUILD_NUMBER}.jar"
+      sh "wget http://192.168.56.106/rectangle/all/rectangle_${env.BUILD_NUMBER}.jar"
       sh "java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"
      }
     }
