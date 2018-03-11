@@ -37,7 +37,7 @@ pipeline {
       sh "cp dist/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/${env.BRANCH_NAME}/"
     }
   }
-    stage ("Rectangle on Centos2") {
+    stage ("Rectangle on Centos") {
      agent {
       label 'Centos'
      }
